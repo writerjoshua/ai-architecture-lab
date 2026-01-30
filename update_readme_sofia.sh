@@ -1,3 +1,6 @@
+#!/bin/bash
+
+cat > README.md << 'EOF'
 # AI Architecture Lab
 
 Building efficient, transparent AI systems with Anthropic's Claude.
@@ -86,3 +89,8 @@ ai-architecture-lab/
 
 **License:** MIT  
 **Last Updated:** January 2026
+EOF
+
+echo "✅ README updated with project focus!"
+echo ""
+echo "Next: Create folders for new projects and their READMEs"
