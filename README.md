@@ -12,40 +12,41 @@ Building efficient, transparent AI systems with Anthropic's Claude.
 
 This repository documents our collaborative exploration of AI architecture, token efficiency, and prompt engineering best practices. We prioritize transparency in our process, academic rigor in our approach, and practical efficiency in our designs.
 
-### Project 1: The Council
+### Project 1: Sofia — Liaison
 
-Specialized assistants designed to distribute cognitive work across distinct domains while maintaining full personalities within efficient designs.
+My first custom assistant design, optimized for coordination, synthesis, and navigating complexity. Sofia is the foundation for everything that follows.
+
+*(Full case study coming)*
+
+---
+
+### Project 2: The Council
+
+Specialized assistants built on protocols developed with Sofia. Distributes cognitive work across distinct domains while maintaining full personalities within efficient designs.
 
 **Members:**
-- **[Sofia](projects/anthropic/the-council/sofia/PROFILE.md)** — Liaison & Coordinator
-- **[Maya](projects/anthropic/the-council/maya/PROFILE.md)** — Infrastructure & Systems
-- **[Diana](projects/anthropic/the-council/diana/PROFILE.md)** — Finance & Operations
+- **Maya** — Infrastructure & Systems
+- **Diana** — Finance & Operations
 
-Each profile documents design philosophy, communication patterns, and application across conversations and artifacts.
-
----
-
-### Project 2: SOFIA Compression Codex
-
-A framework for maximizing token efficiency in multithreaded projects and assistant creation. Documents design principles, measurable efficiencies, and applications across different use cases.
-
-[View Documentation](projects/anthropic/sofia-compression-codex/README.md)
+*(Full documentation coming)*
 
 ---
 
-### Project 3: Diana's Debt Management Tool
+### Project 3: SOFIA Codex
 
-A specialized assistant designed to analyze household budgeting, leverage credit card rewards, optimize interest rates, and develop debt paydown strategies.
+Token efficiency compression framework, refined through collaboration with Sofia and Maya. Documents principles, patterns, and measurable techniques for reducing token consumption across multithreaded projects and custom assistant creation.
 
-[View Documentation](projects/anthropic/dianas-debt-management/README.md)
+*(Full documentation coming)*
 
 ---
 
-## Deployment
+### Project 4: Diana — Budget Assistant
 
-Ready to test these tools? Download and deploy them in your own Claude instances.
+Specialized assistant for household debt analysis and paydown strategy, built on the same protocols as Sofia and refined with the SOFIA Codex framework.
 
-[View Available Deployments](projects/anthropic/deployment/README.md)
+Analyzes credit cards, interest rates, rewards structures, and develops personalized debt management strategies.
+
+*(Full documentation coming)*
 
 ---
 
@@ -69,17 +70,18 @@ Token efficiency is not optional—it's essential. As AI systems scale, every to
 ai-architecture-lab/
 ├── projects/
 │   └── anthropic/
+│       ├── sofia-liaison/
 │       ├── the-council/
-│       │   ├── sofia/
 │       │   ├── maya/
 │       │   └── diana/
-│       ├── sofia-compression-codex/
-│       ├── dianas-debt-management/
-│       └── deployment/
+│       ├── sofia-codex/
+│       └── diana-budget-assistant/
 ├── public/
 ├── blog/
-├── pages/
-└── README.md
+├── README.md
+├── LICENSE
+├── CONTRIBUTING.md
+└── .gitignore
 ```
 
 ---

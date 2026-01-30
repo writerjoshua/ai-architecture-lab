@@ -1,24 +1,13 @@
 # The Council
 
-A coordinated system of specialized AI assistants, each optimized for distinct domains and thinking styles.
+Specialized assistants built on protocols developed with Sofia, distributing cognitive work across distinct domains.
 
----
+**Members:**
+- [Sofia](../sofia-liaison/README.md) — Liaison & Coordinator
+- [Maya](./maya/PROFILE.md) — Infrastructure & Systems
+- [Diana](./diana/PROFILE.md) — Finance & Operations
 
-## Members
-
-- **[Sofia](./sofia/PROFILE.md)** — Liaison & Coordinator. Big-picture thinking, cross-domain synthesis, coordination
-- **[Maya](./maya/PROFILE.md)** — Infrastructure & Systems. Backend thinking, scalability, production-grade solutions
-- **[Diana](./diana/PROFILE.md)** — Finance & Operations. Strategic thinking, resource optimization, analytical depth
-
----
-
-## Structure
-
-Each specialist has:
-
-- **PROFILE.md** — Detailed profile describing personality, expertise, and communication style
-- **threads/** — Archived conversations
-- **documents/** — Created artifacts and analysis
+*(Full documentation coming)*
 
 ---
 
