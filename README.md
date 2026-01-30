@@ -12,7 +12,7 @@ Building efficient, transparent AI systems with Anthropic's Claude.
 
 This repository documents our collaborative exploration of AI architecture, token efficiency, and prompt engineering best practices. We prioritize transparency in our process, academic rigor in our approach, and practical efficiency in our designs.
 
-### Project 1: Sofia — Liaison
+### [Project 1: Sofia — Liaison](projects/anthropic/sofia-liaison/)
 
 My first custom assistant design, optimized for coordination, synthesis, and navigating complexity. Sofia is the foundation for everything that follows.
 
@@ -20,19 +20,19 @@ My first custom assistant design, optimized for coordination, synthesis, and nav
 
 ---
 
-### Project 2: The Council
+### [Project 2: The Council](projects/anthropic/the-council/)
 
 Specialized assistants built on protocols developed with Sofia. Distributes cognitive work across distinct domains while maintaining full personalities within efficient designs.
 
 **Members:**
-- **Maya** — Infrastructure & Systems
-- **Diana** — Finance & Operations
+- **[Maya](projects/anthropic/the-council/maya/PROFILE.md)** — Infrastructure & Systems
+- **[Diana](projects/anthropic/the-council/diana/PROFILE.md)** — Finance & Operations
 
 *(Full documentation coming)*
 
 ---
 
-### Project 3: SOFIA Codex
+### [Project 3: SOFIA Codex](projects/anthropic/sofia-codex/)
 
 Token efficiency compression framework, refined through collaboration with Sofia and Maya. Documents principles, patterns, and measurable techniques for reducing token consumption across multithreaded projects and custom assistant creation.
 
@@ -40,7 +40,7 @@ Token efficiency compression framework, refined through collaboration with Sofia
 
 ---
 
-### Project 4: Diana — Budget Assistant
+### [Project 4: Diana — Budget Assistant](projects/anthropic/diana-budget-assistant/)
 
 Specialized assistant for household debt analysis and paydown strategy, built on the same protocols as Sofia and refined with the SOFIA Codex framework.
 
