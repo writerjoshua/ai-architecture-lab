@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jot Composer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FDF8F3;
+            --charcoal: #2A2A2A;
+            --accent: #D4A574;
+            --border: #E8DFD5;
+            --shadow: rgba(0, 0, 0, 0.06);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #FAF5EF 100%);
+            color: var(--charcoal);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            border-radius: 2px;
+            box-shadow: 
+                0 20px 60px var(--shadow),
+                0 0 0 1px var(--border);
+            padding: 3rem;
+            position: relative;
+            z-index: 2;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #888;
+            margin-bottom: 0.75rem;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            border: 1.5px solid var(--border);
+            border-radius: 2px;
+            background: var(--cream);
+            color: var(--charcoal);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: white;
+            box-shadow: 0 4px 12px rgba(212, 165, 116, 0.1);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .meta-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .read-only {
+            background: #F5F5F5;
+            cursor: not-allowed;
+            color: #999;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        button {
+            flex: 1;
+            padding: 1.25rem 2rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: var(--charcoal);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1A1A1A;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: var(--cream);
+            color: var(--charcoal);
+            border: 1.5px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .preview {
+            margin-top: 2.5rem;
+            padding: 2rem;
+            background: #1A1A1A;
+            border-radius: 2px;
+            border: 1px solid #333;
+            overflow-x: auto;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .preview code {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #A8E6CF;
+            line-height: 1.6;
+            display: block;
+            white-space: pre;
+        }
+
+        .preview .key {
+            color: #FFB8B8;
+        }
+
+        .preview .string {
+            color: #FFE8A3;
+        }
+
+        .preview .number {
+            color: #A8D5FF;
+        }
+
+        .status {
+            text-align: center;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 2px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .status.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .status.success {
+            background: #E8F5E9;
+            color: #2E7D32;
+            border: 1px solid #A5D6A7;
+        }
+
+        .accent-line {
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .meta-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Jot Composer</h1>
+            <p class="subtitle">Craft your thoughts, export as JSON</p>
+        </header>
+
+        <form id="jotForm">
+            <div class="meta-row">
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input type="number" id="id" value="1" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="text" id="date" class="read-only" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="time">Time</label>
+                    <input type="text" id="time" class="read-only" readonly>
+                </div>
+            </div>
+
+            <div class="accent-line"></div>
+
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" placeholder="Josh's Jots" required>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id="content" placeholder="Write your jot here... Markdown supported!" required></textarea>
+            </div>
+
+            <div class="actions">
+                <button type="button" class="btn-secondary" onclick="generatePreview()">
+                    Preview JSON
+                </button>
+                <button type="button" class="btn-primary" onclick="copyToClipboard()">
+                    Copy to Clipboard
+                </button>
+            </div>
+        </form>
+
+        <div id="status" class="status"></div>
+
+        <div id="preview" class="preview" style="display: none;"></div>
+    </div>
+
+    <script>
+        // Initialize with current date and time
+        function updateDateTime() {
+            const now = new Date();
+            const date = now.toISOString().split('T')[0];
+            const time = now.toTimeString().split(' ')[0].substring(0, 5);
+            
+            document.getElementById('date').value = date;
+            document.getElementById('time').value = time;
+        }
+
+        // Format JSON with syntax highlighting
+        function formatJSON(obj) {
+            const json = JSON.stringify(obj, null, 2);
+            return json
+                .replace(/"([^"]+)":/g, '<span class="key">"$1"</span>:')
+                .replace(/: "([^"]*)"/g, ': <span class="string">"$1"</span>')
+                .replace(/: (\d+)/g, ': <span class="number">$1</span>');
+        }
+
+        // Generate preview
+        function generatePreview() {
+            const jot = getJotObject();
+            const preview = document.getElementById('preview');
+            preview.innerHTML = '<code>' + formatJSON(jot) + '</code>';
+            preview.style.display = 'block';
+            showStatus('Preview generated', 'success');
+        }
+
+        // Get jot object
+        function getJotObject() {
+            return {
+                id: parseInt(document.getElementById('id').value),
+                title: document.getElementById('title').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                content: document.getElementById('content').value
+            };
+        }
+
+        // Copy to clipboard
+        async function copyToClipboard() {
+            const jot = getJotObject();
+            const jsonString = JSON.stringify(jot, null, 2);
+            
+            try {
+                await navigator.clipboard.writeText(jsonString);
+                showStatus('✓ Copied to clipboard!', 'success');
+                
+                // Auto-increment ID for next jot
+                const currentId = parseInt(document.getElementById('id').value);
+                document.getElementById('id').value = currentId + 1;
+                
+                // Update time to current
+                updateDateTime();
+                
+                // Generate preview automatically
+                generatePreview();
+            } catch (err) {
+                showStatus('Failed to copy. Please try again.', 'error');
+            }
+        }
+
+        // Show status message
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = 'status show ' + type;
+            
+            setTimeout(() => {
+                status.classList.remove('show');
+            }, 3000);
+        }
+
+        // Handle Enter key in title field
+        document.getElementById('title').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('content').focus();
+            }
+        });
+
+        // Initialize
+        updateDateTime();
+        
+        // Update time every second
+        setInterval(updateDateTime, 1000);
+
+        // Load last used ID from localStorage
+        const lastId = localStorage.getItem('lastJotId');
+        if (lastId) {
+            document.getElementById('id').value = parseInt(lastId) + 1;
+        }
+
+        // Save ID to localStorage when copying
+        const originalCopy = copyToClipboard;
+        copyToClipboard = async function() {
+            await originalCopy();
+            const currentId = parseInt(document.getElementById('id').value) - 1;
+            localStorage.setItem('lastJotId', currentId);
+        };
+    </script>
+</body>
+</html>
